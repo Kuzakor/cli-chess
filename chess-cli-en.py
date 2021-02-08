@@ -573,11 +573,11 @@ class board:
                 old_board = board1.copy()
             except AttributeError:
                 pass
-            pawn_select = input('Select pawn(ex. A2): ')
+            pawn_select = input('Select pawn(eg. A2): ')
             selected_pawn = self.is_pawn_here(pawn_select, board1)
             if selected_pawn != False:
                 print('You want to move ' + selected_pawn)
-                pawn_where = input('Where you want to move?(ex. A3): ')
+                pawn_where = input('Where you want to move?(eg. A3): ')
                 if selected_pawn == 'P':
                     board1 = self.move(self.pawn1, pawn_select, pawn_where, board1, 'move')
                     self.pawn1.checks = self.move(self.pawn1, pawn_where, 'A1', board1, 'check')
