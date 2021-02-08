@@ -4,3 +4,4 @@ NOTE: This game is in alfa state, may contains lot of bugs. Please report all of
 
 # Run
 <code> git clone https://github.com/Kuzakor/cli-chess.git </code>
+<code> ./cli-chess </code>
