@@ -538,8 +538,8 @@ class board:
 
     def output(self):
         board1 = [['_' for _ in range(8)] for _ in range(8)]
-       # board1 = self.insert(self.horse1, self.horse1.location, board1)
-        #board1 = self.insert(self.horse1, 'G1', board1)
+        board1 = self.insert(self.horse1, self.horse1.location, board1)
+        board1 = self.insert(self.horse1, 'G1', board1)
         board1 = self.insert(self.tower1, self.tower1.location, board1)
         board1 = self.insert(self.tower1, 'H1', board1)
         board1 = self.insert(self.runner1, self.runner1.location, board1)
@@ -550,8 +550,8 @@ class board:
         for z in pawns_loc:
             board1 = self.insert(self.pawn1, z, board1)
         board1 = board1[::-1]
-       # board1 = self.insert(self.horse11, self.horse1.location, board1)
-        #board1 = self.insert(self.horse11, 'B1', board1)
+        board1 = self.insert(self.horse11, self.horse1.location, board1)
+        board1 = self.insert(self.horse11, 'B1', board1)
         board1 = self.insert(self.tower11, self.tower1.location, board1)
         board1 = self.insert(self.tower11, 'A1', board1)
         board1 = self.insert(self.runner11, self.runner1.location, board1)
@@ -661,4 +661,3 @@ szachownica = board()
 
 if szachownica.output():
     print('koniec gry')
-

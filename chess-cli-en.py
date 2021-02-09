@@ -660,5 +660,4 @@ class board:
 szachownica = board()
 
 if szachownica.output():
-    print('koniec gry')
-
+    print('end of the game')
