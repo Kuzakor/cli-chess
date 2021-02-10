@@ -420,9 +420,30 @@ class board:
                 self.insert(self.king1, x + str(int(i) + 1), board)
             else:
                 if to in pos:
-                    self.insert(pawn, to, board)
-                    self.insert(self.empty, _from, board)
-                    return board
+                     if '8' in to and ord(pawn.texture) > 100:
+                        promotion = input('for what figure you want to change?:')
+                        if promotion == 'queen':
+                           self.insert(self.hetman1, to, board)
+                        if promotion == 'horse':
+                           self.insert(self.horse11, to, board)
+                        if promotion == 'runner':
+                           self.insert(self.runner11, to, board)
+                        if promotion == 'tower':
+                           self.insert(self.tower11, to, board)
+                     if '1' in to and ord(pawn.texture) < 100:
+                        promotion = input('na jaką figure chcesz zamienić?: ')
+                        if promotion == 'queen':
+                           self.insert(self.hetman, to, board)
+                        if promotion == 'horse':
+                           self.insert(self.horse1, to, board)
+                        if promotion == 'runner':
+                           self.insert(self.runner1, to, board)
+                        if promotion == 'tower':
+                           self.insert(self.tower1, to, board)
+                     else:
+                        self.insert(pawn, to, board)
+                     self.insert(self.empty, _from, board)
+                     return board
                 else:
                     print("wrong move")
         elif type == 'check':
@@ -656,7 +677,7 @@ class board:
                 else:
                     board1 = old_board.copy()
             else:
-                print('Brak pionka w ' + pawn_select)
+                print('None pawn in ' + pawn_select)
 
 
 szachownica = board()

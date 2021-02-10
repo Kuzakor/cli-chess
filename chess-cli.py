@@ -420,7 +420,28 @@ class board:
                 self.insert(self.king1, x + str(int(i) + 1), board)
             else:
                 if to in pos:
-                    self.insert(pawn, to, board)
+                    if ('8' in to and ord(pawn.texture) > 100):
+                        promotion = input('na jaką figure chcesz zamienić?: ')
+                        if promotion == 'hetman':
+                           self.insert(self.hetman1, to, board)
+                        if promotion == 'koń':
+                           self.insert(self.horse11, to, board)
+                        if promotion == 'goniec':
+                           self.insert(self.runner11, to, board)
+                        if promotion == 'wieża':
+                           self.insert(self.tower11, to, board)
+                    elif ('1' in to and ord(pawn.texture) < 100):
+                        promotion = input('na jaką figure chcesz zamienić?: ')
+                        if promotion == 'hetman':
+                           self.insert(self.hetman, to, board)
+                        if promotion == 'koń':
+                           self.insert(self.horse1, to, board)
+                        if promotion == 'goniec':
+                           self.insert(self.runner1, to, board)
+                        if promotion == 'wieża':
+                           self.insert(self.tower1, to, board)
+                    else:
+                        self.insert(pawn, to, board)
                     self.insert(self.empty, _from, board)
                     return board
                 else:
