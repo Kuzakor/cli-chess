@@ -653,6 +653,8 @@ class board:
                         board1 = old_board.copy()
                     else:
                         self.print_board(board1)
+                else:
+                    board1 = old_board.copy()
             else:
                 print('Brak pionka w ' + pawn_select)
 
