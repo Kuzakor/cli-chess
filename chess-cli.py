@@ -220,9 +220,9 @@ class board:
                                             self.is_pawn_here(horse_dict1.get(u) + str(int(i) + z),
                                                               board)) < 100 and pawn.texture < 100):
                                             pos.pop()
-                                    u = horse_dict1.get(x)
                                 except TypeError:
                                     pass
+                                u = horse_dict1.get(x)
                             lock = False
                             u = x
                             for z in range(1, 8):
@@ -236,9 +236,9 @@ class board:
                                             self.is_pawn_here(horse_dict1.get(u) + str(int(i) - z),
                                                               board)) < 100 and pawn.texture < 100):
                                             pos.pop()
-                                    u = horse_dict1.get(x)
                                 except TypeError:
                                     pass
+                                u = horse_dict1.get(x)
                             lock = False
                             u = x
                             for z in range(1, 8):
@@ -252,9 +252,9 @@ class board:
                                             self.is_pawn_here(horse_dict2.get(u) + str(int(i) + z),
                                                               board)) < 100 and pawn.texture < 100):
                                             pos.pop()
-                                    u = horse_dict2.get(x)
                                 except TypeError:
                                     pass
+                                u = horse_dict2.get(x)
                             lock = False
                             u = x
                             for z in range(1, 8):
@@ -268,9 +268,9 @@ class board:
                                             self.is_pawn_here(horse_dict2.get(u) + str(int(i) - z),
                                                               board)) < 100 and pawn.texture < 100):
                                             pos.pop()
-                                    u = horse_dict2.get(x)
                                 except TypeError:
                                     pass
+                                u = horse_dict2.get(x)
                         if pawn.move_type == 'hetman':
                             lock_up = False
                             lock_row = False
@@ -309,9 +309,9 @@ class board:
                                             self.is_pawn_here(horse_dict1.get(u) + str(int(i) + z),
                                                               board)) < 100 and pawn.texture < 100):
                                             pos.pop()
-                                    u = horse_dict1.get(x)
                                 except TypeError:
                                     pass
+                                u = horse_dict1.get(x)
                             lock = False
                             u = x
                             for z in range(1, 8):
@@ -325,9 +325,9 @@ class board:
                                             self.is_pawn_here(horse_dict1.get(u) + str(int(i) - z),
                                                               board)) < 100 and pawn.texture < 100):
                                             pos.pop()
-                                    u = horse_dict1.get(x)
                                 except TypeError:
                                     pass
+                                u = horse_dict1.get(x)
                             lock = False
                             u = x
                             for z in range(1, 8):
@@ -341,9 +341,9 @@ class board:
                                             self.is_pawn_here(horse_dict2.get(u) + str(int(i) + z),
                                                               board)) < 100 and pawn.texture < 100):
                                             pos.pop()
-                                    u = horse_dict2.get(x)
                                 except TypeError:
                                     pass
+                                u = horse_dict2.get(x)
                             lock = False
                             u = x
                             for z in range(1, 8):
@@ -357,9 +357,9 @@ class board:
                                             self.is_pawn_here(horse_dict2.get(u) + str(int(i) - z),
                                                               board)) < 100 and pawn.texture < 100):
                                             pos.pop()
-                                    u = horse_dict2.get(x)
                                 except TypeError:
                                     pass
+                                u = horse_dict2.get(x)
                         if pawn.move_type == 'king':
                             if self.is_pawn_here(x + str(int(i) + 1), board) != False:
                                 if (ord(self.is_pawn_here(x + str(int(i) + 1),
