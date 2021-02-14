@@ -207,7 +207,6 @@ class board:
                             except TypeError:
                                 pass
                         if pawn.move_type == 'runner':
-                             if pawn.move_type == 'runner':
                             u = x
                             lock = False
                             for z in range(1, 8):
@@ -276,16 +275,20 @@ class board:
                             lock_up = False
                             lock_row = False
                             for a in range(1, 7):
-                                if not lock_up:
-                                    pos.append(x + str(int(i) + a))
-                                if self.is_pawn_here(x + str(int(i) + a), board) != False:
-                                    lock_up = True
-                                    a1 = self.is_pawn_here(x + str(int(i) + a), board)
-                                    if (ord(self.is_pawn_here(x + str(int(i) + a), board)) > 100 and ord(
-                                            pawn.texture) > 100) or (
-                                            ord(self.is_pawn_here(x + str(int(i) + a), board)) < 100 and ord(
-                                        pawn.texture) < 100):
-                                        pos.pop()
+                                try:
+                                    if not lock_up:
+                                        pos.append(x + str(int(i) + a))
+                                    if self.is_pawn_here(x + str(int(i) + a), board) != False:
+                                        lock_up = True
+                                        a1 = self.is_pawn_here(x + str(int(i) + a), board)
+                                        if (ord(self.is_pawn_here(x + str(int(i) + a), board)) > 100 and ord(
+                                                pawn.texture) > 100) or (
+                                                    ord(self.is_pawn_here(x + str(int(i) + a), board)) < 100 and ord(
+                                                        pawn.texture) < 100):
+                                            pos.pop()
+                                except TypeError:
+                                    pass
+
                             for m in self.data.numbers_vector:
                                 if not lock_row:
                                     pos.append(m + i)
@@ -297,7 +300,7 @@ class board:
                                             pos.pop()
                                         except IndexError:
                                             pass
-                             u = x
+                            u = x
                             lock = False
                             for z in range(1, 8):
                                 try:
@@ -411,7 +414,7 @@ class board:
                                                       board)) < 100 and pawn.texture > 100):
                                     pos.append(horse_dict2.get(x) + str(int(i) + 1))
 
-        print(pos)
+        #print(pos)
         if type == 'move':
             if pawn.texture == 't' and self.is_pawn_here(to, board) == 'k':
                 self.insert(pawn, to, board)
