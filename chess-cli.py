@@ -142,12 +142,16 @@ class board:
                                 except TypeError:
                                     pass
                         if pawn.move_type == 'horse':
+                            if horse_dict1.get(x) != None:
                                 pos.append(horse_dict1.get(x) + str(int(i) + 2))
                                 pos.append(horse_dict1.get(x) + str(int(i) - 2))
+                            if horse_dict2.get(x) != None:
                                 pos.append(horse_dict2.get(x) + str(int(i) + 2))
                                 pos.append(horse_dict2.get(x) + str(int(i) - 2))
+                            if horse_dict3.get(x) != None:
                                 pos.append(horse_dict3.get(x) + str(int(i) + 1))
                                 pos.append(horse_dict3.get(x) + str(int(i) - 1))
+                            if horse_dict4.get(x) != None:
                                 pos.append(horse_dict4.get(x) + str(int(i) + 1))
                                 pos.append(horse_dict4.get(x) + str(int(i) - 1))
                         if pawn.move_type == 'runner':
@@ -363,7 +367,7 @@ class board:
                                                       board)) < 100 and pawn.texture > 100):
                                     pos.append(horse_dict2.get(x) + str(int(i) + 1))
 
-        print(pos)
+        #print(pos)
         if type == 'move':
             if pawn.texture == 't' and self.is_pawn_here(to, board) == 'k':
                 self.insert(pawn, to, board)
@@ -374,31 +378,31 @@ class board:
             else:
                 if to in pos:
                     if ('8' in to and ord(pawn.texture) > 100):
-                        promotion = input('na jaką figure chcesz zamienić?: ')
-                        if promotion == 'hetman':
+                        promotion = input('for what you want to change?: ')
+                        if promotion == 'q':
                            self.insert(self.hetman1, to, board)
-                        if promotion == 'koń':
+                        if promotion == 'h':
                            self.insert(self.horse11, to, board)
-                        if promotion == 'goniec':
+                        if promotion == 'r':
                            self.insert(self.runner11, to, board)
-                        if promotion == 'wieża':
+                        if promotion == 't':
                            self.insert(self.tower11, to, board)
                     elif ('1' in to and ord(pawn.texture) < 100):
-                        promotion = input('na jaką figure chcesz zamienić?: ')
-                        if promotion == 'hetman':
+                        promotion = input('for what you want to change?: ')
+                        if promotion == 'Q':
                            self.insert(self.hetman, to, board)
-                        if promotion == 'koń':
+                        if promotion == 'H':
                            self.insert(self.horse1, to, board)
-                        if promotion == 'goniec':
+                        if promotion == 'R':
                            self.insert(self.runner1, to, board)
-                        if promotion == 'wieża':
+                        if promotion == 'T':
                            self.insert(self.tower1, to, board)
                     else:
                         self.insert(pawn, to, board)
                     self.insert(self.empty, _from, board)
                     return board
                 else:
-                    print("zły ruch")
+                    print("wrong move")
         elif type == 'check':
             return pos
 
@@ -547,11 +551,11 @@ class board:
                 old_board = board1.copy()
             except AttributeError:
                 pass
-            pawn_select = input('Wybierz pionka(np. A2): ')
+            pawn_select = input('Select pawn(eg. A2): ')
             selected_pawn = self.is_pawn_here(pawn_select, board1)
             if selected_pawn != False:
-                print('Chcesz poruszyć ' + selected_pawn)
-                pawn_where = input('Gdzie ruszyć?(np. A3): ')
+                print('You want to move' + selected_pawn)
+                pawn_where = input('Where you want to move?(eg. A3): ')
                 if selected_pawn == 'P':
                     board1 = self.move(self.pawn1, pawn_select, pawn_where, board1, 'move')
                     self.pawn1.checks = self.move(self.pawn1, pawn_where, 'A1', board1, 'check')
@@ -618,11 +622,11 @@ class board:
                     if is_check_blue and self.is_checkmate('blue', checks, checks_blue, board1):
                         return True
                     if is_check and ord(selected_pawn) > 100:
-                        print('zły ruch, przeciwnik ma szacha')
+                        print('wrong move, your opponent have check')
                         self.print_board(old_board)
                         board1 = old_board.copy()
                     elif is_check_blue and ord(selected_pawn) < 100:
-                        print('zły ruch, przeciwnik ma szacha')
+                        print('wrong move, your opponent have check')
                         self.print_board(old_board)
                         board1 = old_board.copy()
                     else:
@@ -630,10 +634,10 @@ class board:
                 else:
                     board1 = old_board.copy()
             else:
-                print('Brak pionka w ' + pawn_select)
+                print('No pawn in' + pawn_select)
 
 
 szachownica = board()
 
 if szachownica.output():
-    print('koniec gry')
+    print('end of the game')
