@@ -142,79 +142,14 @@ class board:
                                 except TypeError:
                                     pass
                         if pawn.move_type == 'horse':
-                            try:
-                                if self.is_pawn_here(horse_dict1.get(x) + str(int(i) + 2), board) != False:
-                                    if (ord(self.is_pawn_here(horse_dict1.get(x) + str(int(i) + 2),
-                                                              board)) > 100 and pawn.texture < 100) or (ord(
-                                        self.is_pawn_here(horse_dict1.get(x) + str(int(i) + 2),
-                                                          board)) < 100 and pawn.texture > 100):
-                                        pos.append(horse_dict1.get(x) + str(int(i) + 2))
-                            except TypeError:
-                                pass
-                            try:
-                                if self.is_pawn_here(horse_dict2.get(x) + str(int(i) + 2), board) != False:
-                                    if (ord(self.is_pawn_here(horse_dict2.get(x) + str(int(i) + 2),
-                                                              board)) > 100 and pawn.texture < 100) or (ord(
-                                        self.is_pawn_here(horse_dict2.get(x) + str(int(i) + 2),
-                                                          board)) < 100 and pawn.texture > 100):
-                                        pos.append(horse_dict2.get(x) + str(int(i) + 2))
-                            except TypeError:
-                                pass
-                            try:
-                                if self.is_pawn_here(horse_dict3.get(x) + str(int(i) + 1), board) != False:
-                                    if (ord(self.is_pawn_here(horse_dict3.get(x) + str(int(i) + 1),
-                                                              board)) > 100 and pawn.texture < 100) or (ord(
-                                        self.is_pawn_here(horse_dict3.get(x) + str(int(i) + 1),
-                                                          board)) < 100 and pawn.texture > 100):
-                                        pos.append(horse_dict3.get(x) + str(int(i) + 1))
-                            except TypeError:
-                                pass
-                            try:
-                                if self.is_pawn_here(horse_dict4.get(x) + str(int(i) + 1), board) != False:
-                                    if (ord(self.is_pawn_here(horse_dict4.get(x) + str(int(i) + 1),
-                                                              board)) > 100 and pawn.texture < 100) or (ord(
-                                        self.is_pawn_here(horse_dict4.get(x) + str(int(i) + 1),
-                                                          board)) < 100 and pawn.texture > 100):
-                                        pos.append(horse_dict4.get(x) + str(int(i) + 1))
-                            except TypeError:
-                                pass
-                            try:
-                                if self.is_pawn_here(horse_dict1.get(x) + str(int(i) - 2), board) != False:
-                                    if (ord(self.is_pawn_here(horse_dict1.get(x) + str(int(i) - 2),
-                                                              board)) > 100 and pawn.texture < 100) or (ord(
-                                        self.is_pawn_here(horse_dict1.get(x) + str(int(i) - 2),
-                                                          board)) < 100 and pawn.texture > 100):
-                                        pos.append(horse_dict1.get(x) + str(int(i) - 2))
-                            except TypeError:
-                                pass
-                            try:
-                                if self.is_pawn_here(horse_dict2.get(x) + str(int(i) - 2), board) != False:
-                                    if (ord(self.is_pawn_here(horse_dict2.get(x) + str(int(i) - 2),
-                                                              board)) > 100 and pawn.texture < 100) or (ord(
-                                        self.is_pawn_here(horse_dict2.get(x) + str(int(i) - 2),
-                                                          board)) < 100 and pawn.texture > 100):
-                                        pos.append(horse_dict1.get(x) + str(int(i) + 2))
+                                pos.append(horse_dict1.get(x) + str(int(i) + 2))
+                                pos.append(horse_dict1.get(x) + str(int(i) - 2))
+                                pos.append(horse_dict2.get(x) + str(int(i) + 2))
                                 pos.append(horse_dict2.get(x) + str(int(i) - 2))
-                            except TypeError:
-                                pass
-                            try:
-                                if self.is_pawn_here(horse_dict3.get(x) + str(int(i) - 1), board) != False:
-                                    if (ord(self.is_pawn_here(horse_dict3.get(x) + str(int(i) - 1),
-                                                              board)) > 100 and pawn.texture < 100) or (ord(
-                                        self.is_pawn_here(horse_dict3.get(x) + str(int(i) - 1),
-                                                          board)) < 100 and pawn.texture > 100):
-                                        pos.append(horse_dict3.get(x) + str(int(i) - 1))
-                            except TypeError:
-                                pass
-                            try:
-                                if self.is_pawn_here(horse_dict4.get(x) + str(int(i) - 1), board) != False:
-                                    if (ord(self.is_pawn_here(horse_dict4.get(x) + str(int(i) - 1),
-                                                              board)) > 100 and pawn.texture < 100) or (ord(
-                                        self.is_pawn_here(horse_dict4.get(x) + str(int(i) - 1),
-                                                          board)) < 100 and pawn.texture > 100):
-                                        pos.append(horse_dict1.get(x) + str(int(i) + 2))
-                            except TypeError:
-                                pass
+                                pos.append(horse_dict3.get(x) + str(int(i) + 1))
+                                pos.append(horse_dict3.get(x) + str(int(i) - 1))
+                                pos.append(horse_dict4.get(x) + str(int(i) + 1))
+                                pos.append(horse_dict4.get(x) + str(int(i) - 1))
                         if pawn.move_type == 'runner':
                             u = x
                             lock = False
@@ -428,7 +363,7 @@ class board:
                                                       board)) < 100 and pawn.texture > 100):
                                     pos.append(horse_dict2.get(x) + str(int(i) + 1))
 
-        #print(pos)
+        print(pos)
         if type == 'move':
             if pawn.texture == 't' and self.is_pawn_here(to, board) == 'k':
                 self.insert(pawn, to, board)
