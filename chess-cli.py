@@ -154,6 +154,14 @@ class board:
                             if horse_dict4.get(x) != None:
                                 pos.append(horse_dict4.get(x) + str(int(i) + 1))
                                 pos.append(horse_dict4.get(x) + str(int(i) - 1))
+
+                            for n in pos:
+                                if self.is_pawn_here(n, board) != False:
+                                    try:
+                                        if (ord(self.is_pawn_here(n, board)) > 100 and ord(pawn.texture) > 100) or (ord(self.is_pawn_here(n, board)) < 100 and ord(pawn.texture) < 100):
+                                            pos.remove(n)
+                                    except TypeError:
+                                        pass
                         if pawn.move_type == 'runner':
                             u = x
                             lock = False
@@ -554,7 +562,7 @@ class board:
             pawn_select = input('Select pawn(eg. A2): ')
             selected_pawn = self.is_pawn_here(pawn_select, board1)
             if selected_pawn != False:
-                print('You want to move' + selected_pawn)
+                print('You want to move ' + selected_pawn)
                 pawn_where = input('Where you want to move?(eg. A3): ')
                 if selected_pawn == 'P':
                     board1 = self.move(self.pawn1, pawn_select, pawn_where, board1, 'move')
