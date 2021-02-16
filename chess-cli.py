@@ -427,7 +427,8 @@ class board:
                 }
                 print('You want to move ' + selected_pawn)
                 print('Possible moves are: ')
-                print(movements.get(selected_pawn))
+                for q in movements.get(selected_pawn):
+                    print(q)
                 pawn_where = input('Where you want to move?(eg. A3): ')
                 if selected_pawn == 'P':
                     board1 = self.move(self.pawn1, pawn_select, pawn_where, board1, 'move')
