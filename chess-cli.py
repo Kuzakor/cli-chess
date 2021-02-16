@@ -79,19 +79,19 @@ class board:
                                     pos.append(x + str(int(i) - 2))
                                 if self.is_pawn_here(x + str(int(i) - 1), board) == False:
                                     pos.append(x + str(int(i) - 1))
-                                    if horse_dict1.get(x) != None and self.is_pawn_here(horse_dict1.get(x) + str(int(i) - 1), board) != False:
-                                        pos.append(horse_dict1.get(x) + str(int(i) - 1))
-                                    if horse_dict2.get(x) != None and self.is_pawn_here(horse_dict2.get(x) + str(int(i) - 1), board) != False:
-                                        pos.append(horse_dict2.get(x) + str(int(i) - 1))
+                                if horse_dict1.get(x) != None and self.is_pawn_here(horse_dict1.get(x) + str(int(i) - 1), board) != False:
+                                    pos.append(horse_dict1.get(x) + str(int(i) - 1))
+                                if horse_dict2.get(x) != None and self.is_pawn_here(horse_dict2.get(x) + str(int(i) - 1), board) != False:
+                                    pos.append(horse_dict2.get(x) + str(int(i) - 1))
                             else:
                                 if i == '2':
                                     pos.append(x + str(int(i) + 2))
                                 if self.is_pawn_here(x + str(int(i) + 1), board) == False:
                                     pos.append(x + str(int(i) + 1))
-                                    if horse_dict1.get(x) != None and self.is_pawn_here(horse_dict1.get(x) + str(int(i) + 1), board) != False:
-                                        pos.append(horse_dict1.get(x) + str(int(i) + 1))
-                                    if horse_dict2.get(x) != None and self.is_pawn_here(horse_dict2.get(x) + str(int(i) + 1), board) != False:
-                                        pos.append(horse_dict2.get(x) + str(int(i) + 1))
+                                if horse_dict1.get(x) != None and self.is_pawn_here(horse_dict1.get(x) + str(int(i) + 1), board) != False:
+                                    pos.append(horse_dict1.get(x) + str(int(i) + 1))
+                                if horse_dict2.get(x) != None and self.is_pawn_here(horse_dict2.get(x) + str(int(i) + 1), board) != False:
+                                    pos.append(horse_dict2.get(x) + str(int(i) + 1))
                         if pawn.move_type == 'tower':
                             lock_up = False
                             lock_row = False
