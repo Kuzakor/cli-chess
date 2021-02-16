@@ -134,8 +134,7 @@ class board:
                             for z in range(1, 8):
                                 if not lock:
                                     if horse_dict1.get(u) != None:
-                                        pass
-                                    pos.append(horse_dict1.get(u) + str(int(i) - z))
+                                        pos.append(horse_dict1.get(u) + str(int(i) - z))
                                     if self.is_pawn_here(horse_dict1.get(u) + str(int(i) - z), board) != False:
                                         lock = True
                                 u = horse_dict1.get(x)
