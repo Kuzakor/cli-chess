@@ -103,8 +103,8 @@ class board:
                             for m in self.data.numbers_vector:
                                 if not lock_row:
                                     pos.append(m + i)
-                                if self.is_pawn_here(m + i, board) != False:
-                                            lock_row = True
+                                    if self.is_pawn_here(m + i, board) != False:
+                                        lock_row = True
                         if pawn.move_type == 'horse':
                             if horse_dict1.get(x) != None:
                                 pos.append(horse_dict1.get(x) + str(int(i) + 2))
@@ -234,7 +234,7 @@ class board:
                 self.move(self.king, to, horse_dict3.get(to[0]) + to[1], board, 'move')
             else:
                 if to in pos:
-                    if ('8' in to and ord(pawn.texture) > 100):
+                    if '8' in to and pawn.texture == 'p':
                         promotion = input('for what you want to change?: ')
                         if promotion == 'q':
                            self.insert(self.hetman1, to, board)
@@ -244,7 +244,7 @@ class board:
                            self.insert(self.runner11, to, board)
                         if promotion == 't':
                            self.insert(self.tower11, to, board)
-                    elif ('1' in to and ord(pawn.texture) < 100):
+                    elif '1' in to and pawn.texture == 'P':
                         promotion = input('for what you want to change?: ')
                         if promotion == 'Q':
                            self.insert(self.hetman, to, board)
