@@ -122,40 +122,52 @@ class board:
                         if pawn.move_type == 'runner':
                             u = x
                             lock = False
-                            for z in range(1, 8):
-                                if not lock:
-                                    if horse_dict1.get(u) != None:
-                                        pos.append(horse_dict1.get(u) + str(int(i) + z))
-                                        if self.is_pawn_here(horse_dict1.get(u) + str(int(i) + z), board) != False:
-                                            lock = True
-                                u = horse_dict1.get(x)
+                            z = 1
+                            c = 0
+                            while not lock and c < 8:
+                                if horse_dict1.get(u) != None:
+                                    pos.append(horse_dict1.get(u) + str(int(i) + z))
+                                    if self.is_pawn_here(horse_dict1.get(u) + str(int(i) + z), board) != False:
+                                        lock = True
+                                c += 1
+                                u = horse_dict1.get(u)
+                                z += 1
                             lock = False
                             u = x
-                            for z in range(1, 8):
-                                if not lock:
-                                    if horse_dict1.get(u) != None:
-                                        pos.append(horse_dict1.get(u) + str(int(i) - z))
+                            z = 1
+                            c = 0
+                            while not lock and c < 8:
+                                if horse_dict1.get(u) != None:
+                                    pos.append(horse_dict1.get(u) + str(int(i) - z))
                                     if self.is_pawn_here(horse_dict1.get(u) + str(int(i) - z), board) != False:
                                         lock = True
-                                u = horse_dict1.get(x)
+                                c += 1
+                                u = horse_dict1.get(u)
+                                z += 1
                             lock = False
                             u = x
-                            for z in range(1, 8):
-                                if not lock:
-                                    if horse_dict2.get(u) != None:
-                                        pos.append(horse_dict2.get(u) + str(int(i) + z))
-                                        if self.is_pawn_here(horse_dict2.get(u) + str(int(i) + z), board) != False:
-                                            lock = True
-                                u = horse_dict2.get(x)
+                            c = 0
+                            z = 1
+                            while not lock and c < 8:
+                                if horse_dict2.get(u) != None:
+                                    pos.append(horse_dict2.get(u) + str(int(i) + z))
+                                    if self.is_pawn_here(horse_dict2.get(u) + str(int(i) + z), board) != False:
+                                        lock = True
+                                c += 1
+                                u = horse_dict2.get(u)
+                                z += 1
                             lock = False
                             u = x
-                            for z in range(1, 8):
-                                if not lock:
-                                    if horse_dict2.get(u) != None:
-                                        pos.append(horse_dict2.get(u) + str(int(i) - z))
-                                        if self.is_pawn_here(horse_dict2.get(u) + str(int(i) - z), board) != False:
-                                            lock = True
-                                u = horse_dict2.get(x)
+                            z = 1
+                            c = 0
+                            while not lock and c < 8:
+                                if horse_dict2.get(u) != None:
+                                    pos.append(horse_dict2.get(u) + str(int(i) - z))
+                                    if self.is_pawn_here(horse_dict2.get(u) + str(int(i) - z), board) != False:
+                                        lock = True
+                                c += 1
+                                u = horse_dict2.get(u)
+                                z += 1
                         if pawn.move_type == 'hetman':
                             lock_up = False
                             lock_row = False
@@ -171,40 +183,52 @@ class board:
                                             lock_row = True
                             u = x
                             lock = False
-                            for z in range(1, 8):
-                                if not lock:
-                                    if horse_dict1.get(u) != None:
-                                        pos.append(horse_dict1.get(u) + str(int(i) + z))
-                                        if self.is_pawn_here(horse_dict1.get(u) + str(int(i) + z), board) != False:
-                                            lock = True
-                                u = horse_dict1.get(x)
+                            z = 1
+                            c = 0
+                            while not lock and c < 8:
+                                if horse_dict1.get(u) != None:
+                                    pos.append(horse_dict1.get(u) + str(int(i) + z))
+                                    if self.is_pawn_here(horse_dict1.get(u) + str(int(i) + z), board) != False:
+                                        lock = True
+                                c += 1
+                                u = horse_dict1.get(u)
+                                z += 1
                             lock = False
                             u = x
-                            for z in range(1, 8):
-                                if not lock:
-                                    if horse_dict1.get(u) != None:
-                                        pos.append(horse_dict1.get(u) + str(int(i) - z))
-                                        if self.is_pawn_here(horse_dict1.get(u) + str(int(i) - z), board) != False:
-                                            lock = True
-                                u = horse_dict1.get(x)
+                            z = 1
+                            c = 0
+                            while not lock and c < 8:
+                                if horse_dict1.get(u) != None:
+                                    pos.append(horse_dict1.get(u) + str(int(i) - z))
+                                    if self.is_pawn_here(horse_dict1.get(u) + str(int(i) - z), board) != False:
+                                        lock = True
+                                c += 1
+                                u = horse_dict1.get(u)
+                                z += 1
                             lock = False
                             u = x
-                            for z in range(1, 8):
-                                if not lock:
-                                    if horse_dict2.get(u) != None:
-                                        pos.append(horse_dict2.get(u) + str(int(i) + z))
-                                        if self.is_pawn_here(horse_dict2.get(u) + str(int(i) + z), board) != False:
-                                            lock = True
-                                u = horse_dict2.get(x)
+                            c = 0
+                            z = 1
+                            while not lock and c < 8:
+                                if horse_dict2.get(u) != None:
+                                    pos.append(horse_dict2.get(u) + str(int(i) + z))
+                                    if self.is_pawn_here(horse_dict2.get(u) + str(int(i) + z), board) != False:
+                                        lock = True
+                                c += 1
+                                u = horse_dict2.get(u)
+                                z += 1
                             lock = False
                             u = x
-                            for z in range(1, 8):
-                                if not lock:
-                                    if horse_dict2.get(u) != None:
-                                        pos.append(horse_dict2.get(u) + str(int(i) - z))
-                                        if self.is_pawn_here(horse_dict2.get(u) + str(int(i) - z), board) != False:
-                                            lock = True
-                                u = horse_dict2.get(x)
+                            z = 1
+                            c = 0
+                            while not lock and c < 8:
+                                if horse_dict2.get(u) != None:
+                                    pos.append(horse_dict2.get(u) + str(int(i) - z))
+                                    if self.is_pawn_here(horse_dict2.get(u) + str(int(i) - z), board) != False:
+                                        lock = True
+                                c += 1
+                                u = horse_dict2.get(u)
+                                z += 1
                         if pawn.move_type == 'king':
                             pos.append(x + str(int(i) + 1))
                             pos.append(x + str(int(i) - 1))
@@ -223,6 +247,13 @@ class board:
                         pos.remove(n)
                 except TypeError:
                     pass
+        for s in pos:
+            if '-' in s:
+                pos.remove(s)
+            elif '0' in s:
+                pos.remove(s)
+            elif int(s[1]) > 8:
+                pos.remove(s)
         #print(pos)
         if type == 'move':
             if pawn.texture == 't' and self.is_pawn_here(to, board) == 'k':
