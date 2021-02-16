@@ -112,35 +112,15 @@ class board:
                             lock_up = False
                             lock_row = False
                             for a in range(1, 7):
-                                if not lock_up:
-                                    pos.append(x + str(int(i) + a))
-                                if self.is_pawn_here(x + str(int(i) + a), board) != False:
-                                    lock_up = True
-                                    try:
-                                        if (ord(self.is_pawn_here(x + str(int(i) + a), board)) > 100 and ord(
-                                                pawn.texture) > 100) or (
-                                                    ord(self.is_pawn_here(x + str(int(i) + a), board)) < 100 and ord(
-                                                        pawn.texture) < 100):
-                                            try:
-                                                pos.pop()
-                                            except IndexError:
-                                                pass
-                                    except TypeError:
-                                        pass
+                                    if not lock_up:
+                                        pos.append(x + str(int(i) + a))
+                                        if self.is_pawn_here(x + str(int(i) + a), board) != False:
+                                            lock_up = True
                             for m in self.data.numbers_vector:
                                 if not lock_row:
                                     pos.append(m + i)
-                            if self.is_pawn_here(m + i, board) != False:
-                                lock_row = True
-                                try:
-                                    if (ord(self.is_pawn_here(m + i, board)) > 100 and ord(pawn.texture) > 100) or (
-                                            ord(self.is_pawn_here(m + i, board)) < 100 and ord(pawn.texture) < 100):
-                                        try:
-                                            pos.pop()
-                                        except IndexError:
-                                            pass
-                                except TypeError:
-                                    pass
+                                if self.is_pawn_here(m + i, board) != False:
+                                            lock_row = True
                         if pawn.move_type == 'horse':
                             if horse_dict1.get(x) != None:
                                 pos.append(horse_dict1.get(x) + str(int(i) + 2))
@@ -155,234 +135,108 @@ class board:
                                 pos.append(horse_dict4.get(x) + str(int(i) + 1))
                                 pos.append(horse_dict4.get(x) + str(int(i) - 1))
 
-                            for n in pos:
-                                if self.is_pawn_here(n, board) != False:
-                                    try:
-                                        if (ord(self.is_pawn_here(n, board)) > 100 and ord(pawn.texture) > 100) or (ord(self.is_pawn_here(n, board)) < 100 and ord(pawn.texture) < 100):
-                                            pos.remove(n)
-                                    except TypeError:
-                                        pass
                         if pawn.move_type == 'runner':
                             u = x
                             lock = False
                             for z in range(1, 8):
-                                try:
-                                    if not lock:
-                                        pos.append(horse_dict1.get(u) + str(int(i) + z))
+                                if not lock:
+                                    pos.append(horse_dict1.get(u) + str(int(i) + z))
                                     if self.is_pawn_here(horse_dict1.get(u) + str(int(i) + z), board) != False:
                                         lock = True
-                                        if (ord(self.is_pawn_here(horse_dict1.get(u) + str(int(i) + z),
-                                                                  board)) > 100 and pawn.texture > 100) or (ord(
-                                            self.is_pawn_here(horse_dict1.get(u) + str(int(i) + z),
-                                                              board)) < 100 and pawn.texture < 100):
-                                            pos.pop()
-                                except TypeError:
-                                    pass
                                 u = horse_dict1.get(x)
                             lock = False
                             u = x
                             for z in range(1, 8):
-                                try:
-                                    if not lock:
-                                        pos.append(horse_dict1.get(u) + str(int(i) - z))
+                                if not lock:
+                                    pos.append(horse_dict1.get(u) + str(int(i) - z))
                                     if self.is_pawn_here(horse_dict1.get(u) + str(int(i) - z), board) != False:
                                         lock = True
-                                        if (ord(self.is_pawn_here(horse_dict1.get(u) + str(int(i) - z),
-                                                                  board)) > 100 and pawn.texture > 100) or (ord(
-                                            self.is_pawn_here(horse_dict1.get(u) + str(int(i) - z),
-                                                              board)) < 100 and pawn.texture < 100):
-                                            pos.pop()
-                                except TypeError:
-                                    pass
                                 u = horse_dict1.get(x)
                             lock = False
                             u = x
                             for z in range(1, 8):
-                                try:
-                                    if not lock:
-                                        pos.append(horse_dict2.get(u) + str(int(i) + z))
+                                if not lock:
+                                    pos.append(horse_dict2.get(u) + str(int(i) + z))
                                     if self.is_pawn_here(horse_dict2.get(u) + str(int(i) + z), board) != False:
                                         lock = True
-                                        if (ord(self.is_pawn_here(horse_dict2.get(u) + str(int(i) + z),
-                                                                  board)) > 100 and pawn.texture > 100) or (ord(
-                                            self.is_pawn_here(horse_dict2.get(u) + str(int(i) + z),
-                                                              board)) < 100 and pawn.texture < 100):
-                                            pos.pop()
-                                except TypeError:
-                                    pass
                                 u = horse_dict2.get(x)
                             lock = False
                             u = x
                             for z in range(1, 8):
-                                try:
-                                    if not lock:
-                                        pos.append(horse_dict2.get(u) + str(int(i) - z))
+                                if not lock:
+                                    pos.append(horse_dict2.get(u) + str(int(i) - z))
                                     if self.is_pawn_here(horse_dict2.get(u) + str(int(i) - z), board) != False:
                                         lock = True
-                                        if (ord(self.is_pawn_here(horse_dict2.get(u) + str(int(i) - z),
-                                                                  board)) > 100 and pawn.texture > 100) or (ord(
-                                            self.is_pawn_here(horse_dict2.get(u) + str(int(i) - z),
-                                                              board)) < 100 and pawn.texture < 100):
-                                            pos.pop()
-                                except TypeError:
-                                    pass
                                 u = horse_dict2.get(x)
                         if pawn.move_type == 'hetman':
                             lock_up = False
                             lock_row = False
                             for a in range(1, 7):
-                                try:
                                     if not lock_up:
                                         pos.append(x + str(int(i) + a))
                                         if self.is_pawn_here(x + str(int(i) + a), board) != False:
                                             lock_up = True
-                                            a1 = self.is_pawn_here(x + str(int(i) + a), board)
-                                            if (ord(self.is_pawn_here(x + str(int(i) + a), board)) > 100 and ord(
-                                                    pawn.texture) > 100) or (
-                                                        ord(self.is_pawn_here(x + str(int(i) + a), board)) < 100 and ord(
-                                                            pawn.texture) < 100):
-                                                try:
-                                                    pos.pop()
-                                                except IndexError:
-                                                    pass
-                                except TypeError:
-                                    pass
                             for m in self.data.numbers_vector:
-                                try:
-                                    if not lock_row:
-                                        pos.append(m + i)
-                                        if self.is_pawn_here(m + i, board) != False:
+                                if not lock_row:
+                                    pos.append(m + i)
+                                if self.is_pawn_here(m + i, board) != False:
                                             lock_row = True
-                                            if (ord(self.is_pawn_here(m + i, board)) > 100 and ord(pawn.texture) > 100) or (
-                                                    ord(self.is_pawn_here(m + i, board)) < 100 and ord(pawn.texture) < 100):
-                                                try:
-                                                    pos.pop()
-                                                except IndexError:
-                                                    pass
-                                except TypeError:
-                                    pass
                             u = x
                             lock = False
                             for z in range(1, 8):
-                                try:
-                                    if not lock:
-                                        pos.append(horse_dict1.get(u) + str(int(i) + z))
+                                if not lock:
+                                    pos.append(horse_dict1.get(u) + str(int(i) + z))
                                     if self.is_pawn_here(horse_dict1.get(u) + str(int(i) + z), board) != False:
                                         lock = True
-                                        if (ord(self.is_pawn_here(horse_dict1.get(u) + str(int(i) + z),
-                                                                  board)) > 100 and pawn.texture > 100) or (ord(
-                                            self.is_pawn_here(horse_dict1.get(u) + str(int(i) + z),
-                                                              board)) < 100 and pawn.texture < 100):
-                                            pos.pop()
-                                except TypeError:
-                                    pass
                                 u = horse_dict1.get(x)
                             lock = False
                             u = x
                             for z in range(1, 8):
-                                try:
-                                    if not lock:
-                                        pos.append(horse_dict1.get(u) + str(int(i) - z))
+                                if not lock:
+                                    pos.append(horse_dict1.get(u) + str(int(i) - z))
                                     if self.is_pawn_here(horse_dict1.get(u) + str(int(i) - z), board) != False:
                                         lock = True
-                                        if (ord(self.is_pawn_here(horse_dict1.get(u) + str(int(i) - z),
-                                                                  board)) > 100 and pawn.texture > 100) or (ord(
-                                            self.is_pawn_here(horse_dict1.get(u) + str(int(i) - z),
-                                                              board)) < 100 and pawn.texture < 100):
-                                            pos.pop()
-                                except TypeError:
-                                    pass
                                 u = horse_dict1.get(x)
                             lock = False
                             u = x
                             for z in range(1, 8):
-                                try:
-                                    if not lock:
-                                        pos.append(horse_dict2.get(u) + str(int(i) + z))
+                                if not lock:
+                                    pos.append(horse_dict2.get(u) + str(int(i) + z))
                                     if self.is_pawn_here(horse_dict2.get(u) + str(int(i) + z), board) != False:
                                         lock = True
-                                        if (ord(self.is_pawn_here(horse_dict2.get(u) + str(int(i) + z),
-                                                                  board)) > 100 and pawn.texture > 100) or (ord(
-                                            self.is_pawn_here(horse_dict2.get(u) + str(int(i) + z),
-                                                              board)) < 100 and pawn.texture < 100):
-                                            pos.pop()
-                                except TypeError:
-                                    pass
                                 u = horse_dict2.get(x)
                             lock = False
                             u = x
                             for z in range(1, 8):
-                                try:
-                                    if not lock:
-                                        pos.append(horse_dict2.get(u) + str(int(i) - z))
+                                if not lock:
+                                    pos.append(horse_dict2.get(u) + str(int(i) - z))
                                     if self.is_pawn_here(horse_dict2.get(u) + str(int(i) - z), board) != False:
                                         lock = True
-                                        if (ord(self.is_pawn_here(horse_dict2.get(u) + str(int(i) - z),
-                                                                  board)) > 100 and pawn.texture > 100) or (ord(
-                                            self.is_pawn_here(horse_dict2.get(u) + str(int(i) - z),
-                                                              board)) < 100 and pawn.texture < 100):
-                                            pos.pop()
-                                except TypeError:
-                                    pass
                                 u = horse_dict2.get(x)
                         if pawn.move_type == 'king':
-                            if self.is_pawn_here(x + str(int(i) + 1), board) != False:
-                                if (ord(self.is_pawn_here(x + str(int(i) + 1),
-                                                          board)) > 100 and pawn.texture < 100) or (ord(
-                                    self.is_pawn_here(x + str(int(i) + 1),
-                                                      board)) < 100 and pawn.texture > 100):
-                                    pos.append(x + str(int(i) + 1))
-                            if self.is_pawn_here(x + str(int(i) - 1), board) != False:
-                                if (ord(self.is_pawn_here(x + str(int(i) - 1),
-                                                          board)) > 100 and pawn.texture < 100) or (ord(
-                                    self.is_pawn_here(x + str(int(i) - 1),
-                                                      board)) < 100 and pawn.texture > 100):
-                                    pos.append(x + str(int(i) - 1))
-                            if self.is_pawn_here(horse_dict2.get(x) + i, board) != False:
-                                if (ord(self.is_pawn_here(horse_dict2.get(x) + i,
-                                                          board)) > 100 and pawn.texture < 100) or (ord(
-                                    self.is_pawn_here(horse_dict2.get(x) + i,
-                                                      board)) < 100 and pawn.texture > 100):
-                                    pos.append(horse_dict2.get(x) + i)
-                            if self.is_pawn_here(horse_dict2.get(x) + i, board) != False:
-                                if (ord(self.is_pawn_here(horse_dict1.get(x) + i,
-                                                          board)) > 100 and pawn.texture < 100) or (ord(
-                                    self.is_pawn_here(horse_dict1.get(x) + i,
-                                                      board)) < 100 and pawn.texture > 100):
-                                    pos.append(horse_dict1.get(x) + i)
-                            if self.is_pawn_here(horse_dict2.get(x) + i, board) != False:
-                                if (ord(self.is_pawn_here(horse_dict1.get(x) + str(int(i) + 1),
-                                                          board)) > 100 and pawn.texture < 100) or (ord(
-                                    self.is_pawn_here(horse_dict1.get(x) + str(int(i) + 1),
-                                                      board)) < 100 and pawn.texture > 100):
-                                    pos.append(horse_dict1.get(x) + str(int(i) + 1))
-                            if self.is_pawn_here(horse_dict2.get(x) + i, board) != False:
-                                if (ord(self.is_pawn_here(horse_dict1.get(x) + str(int(i) - 1),
-                                                          board)) > 100 and pawn.texture < 100) or (ord(
-                                    self.is_pawn_here(horse_dict1.get(x) + str(int(i) - 1),
-                                                      board)) < 100 and pawn.texture > 100):
-                                    pos.append(horse_dict1.get(x) + str(int(i) - 1))
-                            if self.is_pawn_here(horse_dict2.get(x) + i, board) != False:
-                                if (ord(self.is_pawn_here(horse_dict2.get(x) + str(int(i) - 1),
-                                                          board)) > 100 and pawn.texture < 100) or (ord(
-                                    self.is_pawn_here(horse_dict2.get(x) + str(int(i) - 1),
-                                                      board)) < 100 and pawn.texture > 100):
-                                    pos.append(horse_dict2.get(x) + str(int(i) - 1))
-                            if self.is_pawn_here(horse_dict2.get(x) + i, board) != False:
-                                if (ord(self.is_pawn_here(horse_dict2.get(x) + str(int(i) + 1),
-                                                          board)) > 100 and pawn.texture < 100) or (ord(
-                                    self.is_pawn_here(horse_dict2.get(x) + str(int(i) + 1),
-                                                      board)) < 100 and pawn.texture > 100):
-                                    pos.append(horse_dict2.get(x) + str(int(i) + 1))
-
-        #print(pos)
+                            pos.append(x + str(int(i) + 1))
+                            pos.append(x + str(int(i) - 1))
+                            pos.append(horse_dict2.get(x) + i)
+                            pos.append(horse_dict1.get(x) + i)
+                            pos.append(horse_dict1.get(x) + str(int(i) + 1))
+                            pos.append(horse_dict1.get(x) + str(int(i) - 1))
+                            pos.append(horse_dict2.get(x) + str(int(i) - 1))
+                            pos.append(horse_dict2.get(x) + str(int(i) + 1))
+        for n in pos:
+            if self.is_pawn_here(n, board) != False:
+                try:
+                    if (ord(self.is_pawn_here(n, board)) > 100 and ord(pawn.texture) > 100) or (ord(self.is_pawn_here(n, board)) < 100 and ord(pawn.texture) < 100):
+                        pos.remove(n)
+                except TypeError:
+                    pass
+        print(pos)
         if type == 'move':
             if pawn.texture == 't' and self.is_pawn_here(to, board) == 'k':
-                self.insert(pawn, to, board)
-                self.insert(self.king1, x + str(int(i) + 1), board)
+                self.move(pawn, _from, horse_dict1.get(to[0]) + to[1], board, 'move')
+                self.move(self.king1, to, horse_dict3.get(to[0]) + to[1], board, 'move')
             elif pawn.texture == 'T' and self.is_pawn_here(to, board) == 'K':
-                self.insert(pawn, to, board)
-                self.insert(self.king1, x + str(int(i) + 1), board)
+                self.move(pawn, _from, horse_dict1.get(to[0]) + to[1], board, 'move')
+                self.move(self.king, to, horse_dict3.get(to[0]) + to[1], board, 'move')
             else:
                 if to in pos:
                     if ('8' in to and ord(pawn.texture) > 100):
@@ -408,9 +262,9 @@ class board:
                     else:
                         self.insert(pawn, to, board)
                     self.insert(self.empty, _from, board)
-                    return board
                 else:
                     print("wrong move")
+            return board
         elif type == 'check':
             return pos
 
