@@ -54,6 +54,10 @@ class board:
                 if i in loc:
                     for x in self.data.numbers_vector:
                         if x in loc:
+                            if i == '0' or int(i) > 8:
+                                return 'err'
+                            if '-' in loc:
+                                return 'err'
                             if board[self.data.number_row_reversed[int(i) - 1] - 1][
                                 self.data.insert_place.get(x)] != '_':
                                 return board[self.data.number_row_reversed[int(i) - 1] - 1][
@@ -98,12 +102,12 @@ class board:
                             for a in range(1, 7):
                                     if not lock_up:
                                         pos.append(x + str(int(i) + a))
-                                        if self.is_pawn_here(x + str(int(i) + a), board) != False:
+                                        if self.is_pawn_here(x + str(int(i) + a), board) != False and self.is_pawn_here(x + str(int(i) + a), board) != pawn.texture:
                                             lock_up = True
                             for m in self.data.numbers_vector:
                                 if not lock_row:
                                     pos.append(m + i)
-                                    if self.is_pawn_here(m + i, board) != False:
+                                    if self.is_pawn_here(m + i, board) != False and self.is_pawn_here(m + i, board) != pawn.texture:
                                         lock_row = True
                         if pawn.move_type == 'horse':
                             if horse_dict1.get(x) != None:
@@ -174,12 +178,12 @@ class board:
                             for a in range(1, 7):
                                     if not lock_up:
                                         pos.append(x + str(int(i) + a))
-                                        if self.is_pawn_here(x + str(int(i) + a), board) != False:
+                                        if self.is_pawn_here(x + str(int(i) + a), board) != False and self.is_pawn_here(x + str(int(i) + a), board) != pawn.texture:
                                             lock_up = True
                             for m in self.data.numbers_vector:
                                 if not lock_row:
                                     pos.append(m + i)
-                                if self.is_pawn_here(m + i, board) != False:
+                                    if self.is_pawn_here(m + i, board) != False and self.is_pawn_here(m + i, board) != pawn.texture:
                                             lock_row = True
                             u = x
                             lock = False
@@ -242,18 +246,14 @@ class board:
                                 pos.append(horse_dict2.get(x) + i)
         for n in pos:
             if self.is_pawn_here(n, board) != False:
-                try:
-                    if (ord(self.is_pawn_here(n, board)) > 100 and ord(pawn.texture) > 100) or (ord(self.is_pawn_here(n, board)) < 100 and ord(pawn.texture) < 100):
-                        pos.remove(n)
-                except TypeError:
-                    pass
-        for s in pos:
-            if '-' in s:
-                pos.remove(s)
-            elif '0' in s:
-                pos.remove(s)
-            elif int(s[1]) > 8:
-                pos.remove(s)
+                if self.is_pawn_here(n,board) == 'err':
+                    pos.remove(n)
+                else:
+                    try:
+                        if (ord(self.is_pawn_here(n, board)) > 100 and ord(pawn.texture) > 100) or (ord(self.is_pawn_here(n, board)) < 100 and ord(pawn.texture) < 100):
+                            pos.remove(n)
+                    except TypeError:
+                        pass
         #print(pos)
         if type == 'move':
             if pawn.texture == 't' and self.is_pawn_here(to, board) == 'k':
