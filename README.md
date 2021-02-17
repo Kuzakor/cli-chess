@@ -1,6 +1,27 @@
-# cli-chess
-A simple cli chess game writen in python
-NOTE: This game is in beta state, may contains lot of bugs. Please report all of them and i try to reapair them. If you want to help me, write on Reddit: u/Kuzakor.
+<h1 align="center">Welcome to cli-chess 👋</h1>
+<p>
+  <a href="https://www.npmjs.com/package/cli-chess" target="_blank">
+    <img alt="Version" src="https://img.shields.io/npm/v/cli-chess.svg">
+  </a>
+</p>
 
-# Run 
-Just run .py file via python, later i'll do exe version for linuxes and windows when game will be ready
+> Simple command line based chees game writen in python
+
+## Install
+
+```sh
+git clone https://github.com/Kuzakor/cli-chess.git && cd cli-chess &&python 3.8 chess-cli.py
+```
+
+## Author
+
+👤 **Kuzakor**
+
+* Github: [@Kuzakor](https://github.com/Kuzakor)
+
+## Show your support
+
+Give a ⭐️ if this project helped you!
+
+***
+_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
