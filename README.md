@@ -1,4 +1,5 @@
 <h1 align="center">Welcome to cli-chess 👋</h1>
+
 > Simple command line based chees game writen in python. 
 > Note: this game is not fully completed
 
