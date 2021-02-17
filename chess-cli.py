@@ -320,99 +320,6 @@ class board:
             index += 1
         print('   A B C D E F G H')
 
-    def is_checkmate(self, which, checks, checks_blue, board2):
-        all = []
-        pawn_where = 'A1'
-        for i in self.data.numbers_vector:
-            for z in self.data.numbers_row:
-                all.append(i + z)
-        print(all)
-        if which == 'blue':
-            checks_blue_temp = checks_blue.copy()
-            for u in all:
-                if not 'K' in checks_blue_temp:
-                    return False
-                if self.is_pawn_here(u, board2) != False:
-                    selected_pawn = self.is_pawn_here(u, board2)
-                    if selected_pawn == 'P':
-                        posible = self.move(self.pawn1, pawn_where, 'A1', board2, 'check')
-                        for m in posible:
-                            board2 = self.move(self.pawn1, selected_pawn, m, board2, 'move')
-                    if selected_pawn == 'T':
-                        posible = self.move(self.tower1, pawn_where, 'A1', board2, 'check')
-                        for m in posible:
-                            board2 = self.move(self.tower1, selected_pawn, m, board2, 'move')
-                    if selected_pawn == 'H':
-                        posible = self.move(self.horse1, 'A1', 'A1', board2, 'check')
-                        for m in posible:
-                            board2 = self.move(self.horse1, selected_pawn, m, board2, 'move')
-                    if selected_pawn == 'R':
-                        posible = self.move(self.runner1, pawn_where, 'A1', board2, 'check')
-                        for m in posible:
-                            board2 = self.move(self.runner1, selected_pawn, m, board2, 'move')
-                    if selected_pawn == 'Q':
-                        posible = self.move(self.hetman, pawn_where, 'A1', board2, 'check')
-                        for m in posible:
-                            board2 = self.move(self.hetman, selected_pawn, m, board2, 'move')
-                    self.pawn11.checks_temp = self.move(self.pawn11, pawn_where, 'A1', board2, 'check')
-                    self.tower11.checks_temp = self.move(self.tower11, pawn_where, 'A1', board2, 'check')
-                    self.horse11.checks_temp = self.move(self.horse11, pawn_where, 'A1', board2, 'check')
-                    self.runner11.checks_temp = self.move(self.runner11, pawn_where, 'A1', board2, 'check')
-                    self.hetman1.checks_temp = self.move(self.hetman1, pawn_where, 'A1', board2, 'check')
-                    self.king1.checks_temp = self.move(self.king1, pawn_where, 'A1', board2, 'check')
-                    if board2 != None:
-                        checks_blue_temp = [
-                            self.king1.checks_temp,
-                            self.runner11.checks_temp,
-                            self.tower11.checks_temp,
-                            self.horse11.checks_temp,
-                            self.hetman.checks_temp,
-                            self.pawn11.checks_temp
-                        ]
-            return True
-        if which == 'white':
-            checks_temp = checks.copy()
-            for u in all:
-                if not 'k' in checks_temp:
-                    return False
-                if self.is_pawn_here(u, board2) != False:
-                    selected_pawn = self.is_pawn_here(u, board2)
-                    if selected_pawn == 'p':
-                        posible = self.move(self.pawn11, pawn_where, 'A1', board2, 'check')
-                        for m in posible:
-                            board2 = self.move(self.pawn11, selected_pawn, m, board2, 'move')
-                    if selected_pawn == 't':
-                        posible = self.move(self.tower11, pawn_where, 'A1', board2, 'check')
-                        for m in posible:
-                            board2 = self.move(self.tower11, selected_pawn, m, board2, 'move')
-                    if selected_pawn == 'h':
-                        posible = self.move(self.horse11, pawn_where, 'A1', board2, 'check')
-                        for m in posible:
-                            board2 = self.move(self.horse11, selected_pawn, m, board2, 'move')
-                    if selected_pawn == 'r':
-                        posible = self.move(self.runner11, pawn_where, 'A1', board2, 'check')
-                        for m in posible:
-                            board2 = self.move(self.runner11, selected_pawn, m, board2, 'move')
-                    if selected_pawn == 'q':
-                        posible = self.move(self.hetman, pawn_where, 'A1', board2, 'check')
-                        for m in posible:
-                            board2 = self.move(self.hetman, selected_pawn, m, board2, 'move')
-                    self.pawn1.checks_temp = self.move(self.pawn1, pawn_where, 'A1', board2, 'check')
-                    self.tower1.checks_temp = self.move(self.tower1, pawn_where, 'A1', board2, 'check')
-                    self.horse1.checks_temp = self.move(self.horse1, pawn_where, 'A1', board2, 'check')
-                    self.runner1.checks_temp = self.move(self.runner1, pawn_where, 'A1', board2, 'check')
-                    self.hetman.checks_temp = self.move(self.hetman, pawn_where, 'A1', board2, 'check')
-                    self.king.checks_temp = self.move(self.king, pawn_where, 'A1', board2, 'check')
-                    if board2 != None:
-                        checks_temp = [
-                            self.king1.checks_temp,
-                            self.runner11.checks_temp,
-                            self.tower11.checks_temp,
-                            self.horse11.checks_temp,
-                            self.hetman.checks_temp,
-                            self.pawn11.checks_temp
-                        ]
-            return True
 
     def output(self):
         board1 = [['_' for _ in range(8)] for _ in range(8)]
@@ -531,10 +438,6 @@ class board:
                         for u in z:
                             if self.is_pawn_here(u, board1) == 'K':
                                 is_check_blue = True
-                    if is_check and self.is_checkmate('white', checks, checks_blue, board1):
-                        return True
-                    if is_check_blue and self.is_checkmate('blue', checks, checks_blue, board1):
-                        return True
                     if is_check and ord(selected_pawn) > 100:
                         print('wrong move, your opponent have check')
                         board1 = old_board.copy()
