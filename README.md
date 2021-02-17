@@ -20,5 +20,4 @@ git clone https://github.com/Kuzakor/cli-chess.git && cd cli-chess && python 3.8
 
 Give a ⭐️ if you like this project!
 
-***
-_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
+
