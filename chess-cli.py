@@ -65,6 +65,7 @@ class board:
 
     def move(self, pawn, _from, to, board, type):
         pos = []
+        roszade = False
         horse_dict1 = {'A': 'B', 'B': 'C', 'C': 'D', 'D': 'E', 'E': 'F', 'F': 'G', 'G': 'H'}
         horse_dict2 = {'H': 'G', 'G': 'F', 'F': 'E', 'E': 'D', 'D': 'C', 'C': 'B', 'B': 'A'}
         horse_dict3 = {'A': 'C', 'B': 'D', 'C': 'E', 'D': 'F', 'E': 'G', 'F': 'H'}
@@ -241,6 +242,9 @@ class board:
                                 pos.append(horse_dict2.get(x) + str(int(i) + 1))
                                 pos.append(horse_dict2.get(x) + i)
 
+                            if (_from == 'E1' and self.is_pawn_here('H1', board) == 't') or (_from == 'E8' and self.is_pawn_here('H8', board) == 'T'):
+                                roszade = True
+
         for n in pos:
             if self.is_pawn_here(n, board) != False:
                     try:
@@ -256,41 +260,50 @@ class board:
                 pos.remove(y)
         #print(pos)
         if type == 'move':
-            if pawn.texture == 't' and self.is_pawn_here(to, board) == 'k':
-                self.move(pawn, _from, horse_dict1.get(to[0]) + to[1], board, 'move')
-                self.move(self.king1, to, horse_dict3.get(to[0]) + to[1], board, 'move')
-            elif pawn.texture == 'T' and self.is_pawn_here(to, board) == 'K':
-                self.move(pawn, _from, horse_dict1.get(to[0]) + to[1], board, 'move')
-                self.move(self.king, to, horse_dict3.get(to[0]) + to[1], board, 'move')
-            else:
-                if to in pos:
-                    if '8' in to and pawn.texture == 'p':
-                        promotion = input('for what you want to change?: ')
-                        if promotion == 'q':
-                           self.insert(self.hetman1, to, board)
-                        if promotion == 'h':
-                           self.insert(self.horse11, to, board)
-                        if promotion == 'r':
-                           self.insert(self.runner11, to, board)
-                        if promotion == 't':
-                           self.insert(self.tower11, to, board)
-                    elif '1' in to and pawn.texture == 'P':
-                        promotion = input('for what you want to change?: ')
-                        if promotion == 'Q':
-                           self.insert(self.hetman, to, board)
-                        if promotion == 'H':
-                           self.insert(self.horse1, to, board)
-                        if promotion == 'R':
-                           self.insert(self.runner1, to, board)
-                        if promotion == 'T':
-                           self.insert(self.tower1, to, board)
-                    else:
-                        self.insert(pawn, to, board)
+            if roszade == True and to == 'G1':
+                if pawn.texture == 'k':
+                    self.insert(self.king1, 'G1', board)
                     self.insert(self.empty, _from, board)
+                    self.insert(self.tower11, 'F1', board)
+                    self.insert(self.empty, 'H1', board)
                 else:
+                    self.insert(self.king, 'G8', board)
+                    self.insert(self.empty, _from, board)
+                    self.insert(self.tower1, 'F8', board)
+                    self.insert(self.empty, 'H8', board)
+
+            if to in pos:
+                if '8' in to and pawn.texture == 'p':
+                    promotion = input('for what you want to change?: ')
+                    if promotion == 'q':
+                        self.insert(self.hetman1, to, board)
+                    if promotion == 'h':
+                       self.insert(self.horse11, to, board)
+                    if promotion == 'r':
+                       self.insert(self.runner11, to, board)
+                    if promotion == 't':
+                       self.insert(self.tower11, to, board)
+                elif '1' in to and pawn.texture == 'P':
+                    promotion = input('for what you want to change?: ')
+                    if promotion == 'Q':
+                       self.insert(self.hetman, to, board)
+                    if promotion == 'H':
+                       self.insert(self.horse1, to, board)
+                    if promotion == 'R':
+                       self.insert(self.runner1, to, board)
+                    if promotion == 'T':
+                       self.insert(self.tower1, to, board)
+                else:
+                    self.insert(pawn, to, board)
+                    self.insert(self.empty, _from, board)
+            else:
                     print("wrong move")
             return board
         elif type == 'check':
+            if pawn.texture == 'k' and roszade == True:
+                pos.append('G1')
+            elif pawn.texture == 'K' and roszade == True:
+                pos.append('')
             return pos
 
     def print_board(self, board):
@@ -434,10 +447,7 @@ class board:
         checks_blue = []
 
         while True:
-            try:
-                old_board = board1.copy()
-            except AttributeError:
-                pass
+            old_board = board1.copy()
             pawn_select = input('Select pawn(eg. A2): ')
             selected_pawn = self.is_pawn_here(pawn_select, board1)
             if selected_pawn != False:
@@ -527,12 +537,12 @@ class board:
                         return True
                     if is_check and ord(selected_pawn) > 100:
                         print('wrong move, your opponent have check')
-                        self.print_board(old_board)
                         board1 = old_board.copy()
+                        self.print_board(old_board)
                     elif is_check_blue and ord(selected_pawn) < 100:
                         print('wrong move, your opponent have check')
-                        self.print_board(old_board)
                         board1 = old_board.copy()
+                        self.print_board(board1)
                     else:
                         self.print_board(board1)
                 else:
