@@ -54,10 +54,6 @@ class board:
                 if i in loc:
                     for x in self.data.numbers_vector:
                         if x in loc:
-                            if i == '0' or int(i) > 8:
-                                return 'err'
-                            if '-' in loc:
-                                return 'err'
                             if board[self.data.number_row_reversed[int(i) - 1] - 1][
                                 self.data.insert_place.get(x)] != '_':
                                 return board[self.data.number_row_reversed[int(i) - 1] - 1][
@@ -244,16 +240,20 @@ class board:
                                 pos.append(horse_dict2.get(x) + str(int(i) - 1))
                                 pos.append(horse_dict2.get(x) + str(int(i) + 1))
                                 pos.append(horse_dict2.get(x) + i)
+
         for n in pos:
             if self.is_pawn_here(n, board) != False:
-                if self.is_pawn_here(n,board) == 'err':
-                    pos.remove(n)
-                else:
                     try:
                         if (ord(self.is_pawn_here(n, board)) > 100 and ord(pawn.texture) > 100) or (ord(self.is_pawn_here(n, board)) < 100 and ord(pawn.texture) < 100):
                             pos.remove(n)
                     except TypeError:
                         pass
+
+        for y in pos:
+            if '0' in y:
+                pos.remove(y)
+            elif '-' in y:
+                pos.remove(y)
         #print(pos)
         if type == 'move':
             if pawn.texture == 't' and self.is_pawn_here(to, board) == 'k':
