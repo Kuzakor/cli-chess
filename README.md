@@ -1,13 +1,9 @@
 <h1 align="center">Welcome to cli-chess 👋</h1>
-<p>
-  <a href="https://www.npmjs.com/package/cli-chess" target="_blank">
-    <img alt="Version" src="https://img.shields.io/npm/v/cli-chess.svg">
-  </a>
-</p>
+
 
 > Simple command line based chees game writen in python
 
-## Install
+## Run
 
 ```sh
 git clone https://github.com/Kuzakor/cli-chess.git && cd cli-chess &&python 3.8 chess-cli.py
@@ -18,10 +14,11 @@ git clone https://github.com/Kuzakor/cli-chess.git && cd cli-chess &&python 3.8 
 👤 **Kuzakor**
 
 * Github: [@Kuzakor](https://github.com/Kuzakor)
+* Reddit: [u/Kuzakor](https://www.reddit.com/user/Kuzakor)
 
 ## Show your support
 
-Give a ⭐️ if this project helped you!
+Give a ⭐️ if you like this project!
 
 ***
 _This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
