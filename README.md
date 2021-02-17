@@ -6,7 +6,7 @@
 ## Run
 
 ```sh
-git clone https://github.com/Kuzakor/cli-chess.git && cd cli-chess &&python 3.8 chess-cli.py
+git clone https://github.com/Kuzakor/cli-chess.git && cd cli-chess && python 3.8 chess-cli.py
 ```
 
 ## Author
