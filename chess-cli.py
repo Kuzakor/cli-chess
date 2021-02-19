@@ -2,26 +2,26 @@
 # -*- coding: utf-8 -*-
 class board:
     class pawn:
-        def __init__(self, location, texture, move_type, checks, check_temp):
+        def __init__(self, location, texture, move_type, checks, status):
             self.location = location
             self.texture = texture
             self.move_type = move_type
             self.checks = checks
-            self.checks_temp = check_temp
+            self.status = status
 
-    tower1 = pawn('A1', 'T', 'tower', '', '')
-    horse1 = pawn('B1', 'H', 'horse', '', '')
-    runner1 = pawn('C1', 'R', 'runner', '', '')
-    hetman = pawn('D1', 'Q', 'hetman', '', '')
-    king = pawn('E1', 'K', 'king', '', '')
-    pawn1 = pawn('A2', 'P', 'pawn', '', '')
-    empty = pawn('none', '_', 'none', '', '')
-    tower11 = pawn('A8', 't', 'tower', '', '')
-    horse11 = pawn('B8', 'h', 'horse', '', '')
-    runner11 = pawn('C8', 'r', 'runner', '', '')
-    hetman1 = pawn('D8', 'q', 'hetman', '', '')
-    king1 = pawn('E8', 'k', 'king', '', '')
-    pawn11 = pawn('A7', 'p', 'pawn', '', '')
+    tower1 = pawn('A1', 'T', 'tower', '', True)
+    horse1 = pawn('B1', 'H', 'horse', '', True)
+    runner1 = pawn('C1', 'R', 'runner', '', True)
+    hetman = pawn('D1', 'Q', 'hetman', '', True)
+    king = pawn('E1', 'K', 'king', '', True)
+    pawn1 = pawn('A2', 'P', 'pawn', '', True)
+    empty = pawn('none', '_', 'none', '', True)
+    tower11 = pawn('A8', 't', 'tower', '', True)
+    horse11 = pawn('B8', 'h', 'horse', '', True)
+    runner11 = pawn('C8', 'r', 'runner', '', True)
+    hetman1 = pawn('D8', 'q', 'hetman', '', True)
+    king1 = pawn('E8', 'k', 'king', '', True)
+    pawn11 = pawn('A7', 'p', 'pawn', '', True)
 
     class dataclass:
         def __init__(self, numbers_vector, numbers_row, insert_place, numbers_row_int, number_row_reversed,
@@ -259,6 +259,10 @@ class board:
             elif '-' in y:
                 pos.remove(y)
         #print(pos)
+        textures = {
+            'k':self.king1, 't': self.tower11, 'h':self.horse11, 'q':self.hetman1, 'r':self.runner11, 'p':self.pawn11,
+            'K':self.king, 'T': self.tower1, 'H':self.horse1, 'Q':self.hetman, 'R':self.runner1, 'P':self.pawn
+        }
         if type == 'move':
             if roszade == True and to == 'G1':
                 if pawn.texture == 'k':
@@ -294,6 +298,11 @@ class board:
                     if promotion == 'T':
                        self.insert(self.tower1, to, board)
                 else:
+                    if self.is_pawn_here(to, board) != False:
+                        destroyed_pawn = self.is_pawn_here(to, board)
+                        print('zbito ' + destroyed_pawn)
+                        obj = textures.get(destroyed_pawn)
+                        obj.status = False
                     self.insert(pawn, to, board)
                     self.insert(self.empty, _from, board)
             else:
@@ -361,7 +370,8 @@ class board:
         is_check = False
         checks = []
         checks_blue = []
-
+        need_refresh_white = False
+        need_refresh_blue = False
         while True:
             old_board = self.boardcopy(board1)
             pawn_select = input('Select pawn(eg. A2): ')
@@ -388,41 +398,78 @@ class board:
                 pawn_where = input('Where you want to move?(eg. A3): ')
                 if selected_pawn == 'P':
                     board1 = self.move(self.pawn1, pawn_select, pawn_where, board1, 'move')
-                    self.pawn1.checks = self.move(self.pawn1, pawn_where, 'A1', board1, 'check')
                 if selected_pawn == 'T':
                     board1 = self.move(self.tower1, pawn_select, pawn_where, board1, 'move')
-                    self.tower1.checks = self.move(self.tower1, pawn_where, 'A1', board1, 'check')
                 if selected_pawn == 'H':
                     board1 = self.move(self.horse1, pawn_select, pawn_where, board1, 'move')
-                    self.horse1.checks = self.move(self.horse1, pawn_where, 'A1', board1, 'check')
                 if selected_pawn == 'R':
                     board1 = self.move(self.runner1, pawn_select, pawn_where, board1, 'move')
-                    self.runner1.checks = self.move(self.runner1, pawn_where, 'A1', board1, 'check')
                 if selected_pawn == 'Q':
                     board1 = self.move(self.hetman, pawn_select, pawn_where, board1, 'move')
-                    self.hetman.checks = self.move(self.hetman, pawn_where, 'A1', board1, 'check')
                 if selected_pawn == 'K':
                     board1 = self.move(self.king, pawn_select, pawn_where, board1, 'move')
-                    self.king.checks = self.move(self.king, pawn_where, 'A1', board1, 'check')
                 if selected_pawn == 'p':
                     board1 = self.move(self.pawn11, pawn_select, pawn_where, board1, 'move')
-                    self.pawn11.checks = self.move(self.pawn11, pawn_where, 'A1', board1, 'check')
                 if selected_pawn == 't':
                     board1 = self.move(self.tower11, pawn_select, pawn_where, board1, 'move')
-                    self.tower11.checks = self.move(self.tower11, pawn_where, 'A1', board1, 'check')
                 if selected_pawn == 'h':
                     board1 = self.move(self.horse11, pawn_select, pawn_where, board1, 'move')
-                    self.horse11.checks = self.move(self.horse11, pawn_where, 'A1', board1, 'check')
                 if selected_pawn == 'r':
                     board1 = self.move(self.runner11, pawn_select, pawn_where, board1, 'move')
-                    self.runner11.checks = self.move(self.runner11, pawn_where, 'A1', board1, 'check')
                 if selected_pawn == 'q':
                     board1 = self.move(self.hetman1, pawn_select, pawn_where, board1, 'move')
-                    self.hetman1.checks = self.move(self.hetman1, pawn_where, 'A1', board1, 'check')
                 if selected_pawn == 'k':
                     board1 = self.move(self.king1, pawn_select, pawn_where, board1, 'move')
-                    self.king1.checks = self.move(self.king, pawn_where, 'A1', board1, 'check')
                 if board1 != None:
+                    if self.pawn11.status:
+                        self.pawn11.checks = self.move(self.pawn11, pawn_where, 'A1', board1, 'check')
+                    else:
+                        self.pawn11.checks = ''
+                    if self.pawn11.status:
+                        self.tower11.checks = self.move(self.tower11, pawn_where, 'A1', board1, 'check')
+                    else:
+                        self.tower11.checks = ''
+                    if self.horse11.status:
+                        self.horse11.checks = self.move(self.horse11, pawn_where, 'A1', board1, 'check')
+                    else:
+                        self.horse11.checks = ''
+                    if self.runner11.status:
+                        self.runner11.checks = self.move(self.runner11, pawn_where, 'A1', board1, 'check')
+                    else:
+                        self.runner11.checks = ''
+                    if self.hetman1.status:
+                        self.hetman1.checks = self.move(self.hetman1, pawn_where, 'A1', board1, 'check')
+                    else:
+                        self.hetman1.checks = ''
+                    if self.king1.status:
+                        self.king1.checks = self.move(self.king1, pawn_where, 'A1', board1, 'check')
+                    else:
+                        self.king1.checks = ''
+                    if self.pawn1.status:
+                        self.pawn1.checks = self.move(self.pawn1, pawn_where, 'A1', board1, 'check')
+                    else:
+                        self.pawn1.checks = ''
+                    if self.tower1.status:
+                        self.tower1.checks = self.move(self.tower1, pawn_where, 'A1', board1, 'check')
+                    else:
+                        self.tower1.checks = ''
+                    if self.horse1.status:
+                        self.horse1.checks = self.move(self.horse1, pawn_where, 'A1', board1, 'check')
+                    else:
+                        self.horse1.checks = ''
+                    if self.runner1.status:
+                        self.runner1.checks = self.move(self.runner1, pawn_where, 'A1', board1, 'check')
+                    else:
+                        self.runner1.checks = ''
+                    if self.hetman.status:
+                        self.hetman.checks = self.move(self.hetman, pawn_where, 'A1', board1, 'check')
+                    else:
+                        self.hetman.checks = ''
+                    if self.king.status:
+                        self.king.checks = self.move(self.king, pawn_where, 'A1', board1, 'check')
+                    else:
+                        self.king.checks = ''
+
                     checks = [
                         self.king.checks,
                         self.horse1.checks,
@@ -430,23 +477,26 @@ class board:
                         self.tower1.checks,
                         self.runner1.checks,
                         self.pawn1.checks
-                    ]
+                        ]
                     checks_blue = [
                         self.king1.checks,
                         self.runner11.checks,
                         self.tower11.checks,
                         self.horse11.checks,
-                        self.hetman.checks,
+                        self.hetman1.checks,
                         self.pawn11.checks
-                    ]
+                        ]
+                    print(checks_blue)
                     for z in checks:
                         for u in z:
                             if self.is_pawn_here(u, board1) == 'k':
                                 is_check = True
+                                need_refresh_white = True
                     for z in checks_blue:
                         for u in z:
                             if self.is_pawn_here(u, board1) == 'K':
                                 is_check_blue = True
+                                need_refresh_blue = True
                     if is_check and ord(selected_pawn) > 100:
                         print('wrong move, your opponent have check')
                         board1 = self.boardcopy(old_board)
