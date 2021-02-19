@@ -321,6 +321,15 @@ class board:
         print('   A B C D E F G H')
 
 
+    def boardcopy(self, board):
+        new = [[] for _ in range(8)]
+        for q in range(len(board)):
+            m = board[q]
+            for x in m:
+                new[q].append(x)
+
+        return new
+
     def output(self):
         board1 = [['_' for _ in range(8)] for _ in range(8)]
         board1 = self.insert(self.horse1, self.horse1.location, board1)
@@ -354,7 +363,7 @@ class board:
         checks_blue = []
 
         while True:
-            old_board = board1.copy()
+            old_board = self.boardcopy(board1)
             pawn_select = input('Select pawn(eg. A2): ')
             selected_pawn = self.is_pawn_here(pawn_select, board1)
             if selected_pawn != False:
@@ -440,18 +449,20 @@ class board:
                                 is_check_blue = True
                     if is_check and ord(selected_pawn) > 100:
                         print('wrong move, your opponent have check')
-                        board1 = old_board.copy()
-                        self.print_board(old_board)
+                        board1 = self.boardcopy(old_board)
+                        self.print_board(board1)
                     elif is_check_blue and ord(selected_pawn) < 100:
                         print('wrong move, your opponent have check')
-                        board1 = old_board.copy()
+                        board1 = self.boardcopy(old_board)
                         self.print_board(board1)
                     else:
                         self.print_board(board1)
                 else:
-                    board1 = old_board.copy()
+                    board1 = []
+                    for q in old_board:
+                        board1.append(q)
             else:
-                print('No pawn in' + pawn_select)
+                print('No pawn in ' + pawn_select)
 
 
 szachownica = board()
